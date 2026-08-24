@@ -41,7 +41,7 @@ function SignupPage() {
   }, [isSocial, socialEmail]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });  
   };
 
   // 일반 이메일 인증번호 발송
