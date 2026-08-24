@@ -17,7 +17,7 @@ function SignupPage() {
   ;
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });  
   };
 
   const handleSubmit = async (e) => {
@@ -81,6 +81,21 @@ function SignupPage() {
             onChange={handleChange}
           />
         </Form.Group> 
+
+        <Form.Group className="mb-3">
+          <Form.Label>성별</Form.Label>
+          <Form.Control
+            as="select"
+            name="gender"
+            value={form.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="">선택</option>
+            <option value="0">남성</option>
+            <option value="1">여성</option>
+          </Form.Control>
+        </Form.Group>
 
         <Button type="submit" variant="primary" className="w-100">
           가입하기
