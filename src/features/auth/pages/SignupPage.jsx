@@ -9,16 +9,18 @@ function SignupPage() {
   // URL 파라미터에서 소셜 정보 추출 (예: /signup?email=test@kakao.com&social=true)
   const socialEmail = searchParams.get('email');
   const isSocial = searchParams.get('social') === 'true';
-
+  const socialUid = searchParams.get('socialUid'); // 추가: 소셜 제공자 고유 id
+  
   const [form, setForm] = useState({
-    loginEmail: '',
-    loginPassword: '',
-    nickname: '',
-    location: '',
-    ageGroup: '',
-    gender: '',
-    provider: 'LOCAL', // 기본값: 일반 가입
-  });
+  loginEmail: '',
+  loginPassword: '',
+  nickname: '',
+  location: '',
+  ageGroup: '',
+  gender: '',
+  provider: 'LOCAL',
+  socialUid: '', 
+});
 
   const [emailCode, setEmailCode] = useState('');
   const [isEmailSent, setIsEmailSent] = useState(false);
@@ -35,10 +37,12 @@ function SignupPage() {
         ...prev,
         loginEmail: socialEmail,
         provider: searchParams.get('provider') || 'SOCIAL', // KAKAO, GOOGLE 등
+        socialUid: socialUid || '', // 소셜 제공자 고유 id
       }));
+      alert("socialUid: " + socialUid);
       setIsEmailVerified(true); // 소셜은 이메일 인증 자동 패스
     }
-  }, [isSocial, socialEmail]);
+  }, [isSocial, socialEmail, socialUid]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });  
