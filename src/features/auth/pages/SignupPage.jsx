@@ -94,6 +94,19 @@ function SignupPage() {
     }
   };
 
+  const handleCheckEmail = async (e) => {
+    e.preventDefault();
+    if (!form.loginEmail) return setError('이메일을 입력해주세요.');
+    try {
+      setError('');
+      await axiosInstance.post('auth/email-check', { email: form.loginEmail });
+      setIsEmailVerified(true);
+      setSuccessMsg('사용 가능한 이메일입니다.');
+    } catch (err) {
+      setError(err.response?.data?.error || '이미 사용 중인 이메일입니다.');
+    }
+  };
+
   return (
     <Container style={{ maxWidth: '480px', marginTop: '60px' }}>
       <h3 className="mb-4">{isSocial ? '소셜 추가 정보 입력' : '회원가입'}</h3>
@@ -110,10 +123,13 @@ function SignupPage() {
               name="loginEmail"
               value={form.loginEmail}
               onChange={handleChange}
-              readOnly={isSocial} // 소셜 계정은 이메일 수정 불가
               disabled={isEmailVerified && !isSocial}
+              placeholder='이메일을 입력해주세요'
               required
             />
+             <Button variant="outline-primary" onClick={handleCheckEmail}>
+              {isEmailVerified ? '인증 완료' : '중복 확인'}
+             </Button>
             {/* 일반 가입일 때만 인증번호 전송 버튼 표시 */}
             {!isSocial && (
               <Button
@@ -141,9 +157,10 @@ function SignupPage() {
               <Button variant="outline-success" onClick={handleVerifyEmail}>
                 인증 확인
               </Button>
-            </InputGroup>
+              </InputGroup>
           </Form.Group>
         )}
+             
 
         {/* 비밀번호 (소셜 가입은 임의값 지정 또는 숨김 가능) */}
         <Form.Group className="mb-3">
