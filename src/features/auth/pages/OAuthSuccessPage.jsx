@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
+import axiosInstance from '../../../api/axiosInstance';
 
 function OAuthSuccessPage() {
   const [searchParams] = useSearchParams();
@@ -10,12 +11,16 @@ function OAuthSuccessPage() {
 
   useEffect(() => {
     const token = searchParams.get('token');
-    if (token) {
-      login(null, token);   // 유저 정보는 나중에 /mypage API로 따로 조회
-      navigate('/');
-    } else {
-      navigate('/login');
-    }
+    if (!token) {
+     navigate('/login');
+     return;
+    } 
+    login(null, token); // 토큰 저장하고
+    axiosInstance.get('/auth/me') // 유저정보 받아서 저장
+      .then((res) => {
+        login(res.data,token);
+        navigate('/'); // 홈으로 이동
+      })
   }, []);
 
   return <p>로그인 처리 중...</p>;

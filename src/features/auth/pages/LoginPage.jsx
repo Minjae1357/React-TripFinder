@@ -39,7 +39,12 @@ const LoginPage = () => {
         try{
             const res = await axiosInstance.post('/auth/login',form);
             const{accessToken} = res.data;
-            login({loginEmail:form.loginEmail},accessToken);
+            //토큰저장해주고
+            login(null,accessToken);
+            // 유저정보받아서저장하기
+            const meRes = await axiosInstance.get('/auth/me');
+            login(meRes.data,accessToken);
+
             navigate("/")
         } catch (err) {
             setError(err.response?.data?.error||'로그인에 실패했습니다.');

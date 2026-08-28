@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Container, Alert, InputGroup, Row, Col } from 'react-bootstrap';
 import axiosInstance from '../../../api/axiosInstance';
-
+import { useAuthStore } from "@/store/authStore";
 function SignupPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
+  const login = useAuthStore((state) => state.login); 
   // URL 파라미터에서 소셜 정보 추출 (예: /signup?email=test@kakao.com&social=true&provider=KAKAO&socialUid=xxx)
   const socialEmail = searchParams.get('email');
   const isSocial = searchParams.get('social') === 'true';
@@ -125,8 +125,14 @@ function SignupPage() {
     try {
       // passwordConfirm은 서버로 보낼 필요 없는 클라이언트 전용 값이라 제외하고 전송
       const { passwordConfirm, ...payload } = form;
-      await axiosInstance.post('auth/signup', payload);
-      navigate('/login');
+      const res = await axiosInstance.post('auth/signup', payload);
+      if(isSocial){
+       // 소셜 가입은 signup 완료 = 로그인 완료로 취급, 바로 토큰 저장하고 홈으로
+       const[accessToken] = res.data; // 백엔드가 signup 응답에도 accessToken을 같이 내려줘야 함
+       login({loginEmail:form.loginEmail},accessToken);
+       alert("소셜 회원가입이 완료되었습니다. 소셜 로그인을 이용해주세요.");
+      } 
+        navigate('/login');
     } catch (err) {
       setError(err.response?.data?.error || '회원가입 실패');
     } finally {
