@@ -44,6 +44,8 @@ const Header = () => {
                 <Link to="/login">로그인</Link>
             )
             }
+
+            <Link to="/place">장소 탐색</Link>
        </header>
     );
 };
