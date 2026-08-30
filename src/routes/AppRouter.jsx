@@ -8,6 +8,7 @@ import MyPage from '@/features/auth/pages/MyPage';
 
 import Place from '@/features/place/Place';
 import Planner from '@/features/place/Planner';
+import BoardListPage from '../features/community/pages/BoardListPage';
 
 
 const AppRouter = () => {
@@ -20,6 +21,8 @@ const AppRouter = () => {
             <Route path="/" element={<HomePage/>}/>
             <Route path="/oauth2/success" element={<OAuthSuccessPage/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
+            <Route path="/board" element={<BoardListPage/>}/>
+
 
             <Route path="/place" element={<Place />} />
             <Route path="/planner" element={<Planner />} />
