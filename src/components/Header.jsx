@@ -49,6 +49,12 @@ export default function Header() {
           >
             숙소 추천
           </NavLink>
+          <NavLink
+            to="/board"
+            className={({ isActive }) => (isActive ? 'nav-link nav-link--active' : 'nav-link')}
+          >
+            커뮤니티
+          </NavLink>
         </nav>
 
         {/* 우측 유저 액션 영역 */}

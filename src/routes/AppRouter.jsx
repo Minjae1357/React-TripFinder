@@ -4,6 +4,7 @@ import HomePage from '@/features/community/pages/HomePage';
 import SignupPage from '@/features/auth/pages/SignupPage';
 import OAuthSuccessPage from '@/features/auth/pages/OAuthSuccessPage';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import MyPage from '@/features/auth/pages/MyPage';
 
 import Place from '@/features/place/Place';
@@ -20,7 +21,9 @@ import BookingDetailPage from '../features/accommodation/pages/BookingDetailPage
 import AccommodationRecommendPage from '../features/accommodation/pages/AccommodationRecommendPage';
 
 const AppRouter = () => {
+    const hideFooter = location.pathname === '/place';
     return (
+        
        <BrowserRouter>
        <Header/>
         <Routes>
@@ -42,6 +45,7 @@ const AppRouter = () => {
             <Route path="/bookings/:bookingId" element={<BookingDetailPage/>}/>
             <Route path="/recommend" element={<AccommodationRecommendPage/>}/>
         </Routes>
+        {!hideFooter && <Footer />}
        </BrowserRouter>
     );
 };

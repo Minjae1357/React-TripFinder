@@ -1,0 +1,63 @@
+.tripfinder-footer {
+  background-color: #0F172A;
+  color: #94A3B8;
+  padding: 48px 24px 32px;
+  border-top: 1px solid #1E293B;
+  width: 100%;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+.footer-brand p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  border-top: 1px solid #1E293B;
+  padding-top: 24px;
+}
+
+.copyright {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
