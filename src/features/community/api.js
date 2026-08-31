@@ -1,6 +1,8 @@
 import axiosInstance from '@/api/axiosInstance';
 import axios from 'axios';
 
+export const SERVER_BASE_URL = 'http://localhost:8080';
+
 // 게시글 목록 조회 (category: 'NOTICE | 'REVIEW | null(전체보기)) 
 export const getBoardList = (category) => {
     return axiosInstance.get('/board',{params : category ? {category} : {}});

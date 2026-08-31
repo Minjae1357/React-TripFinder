@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Container, Badge, Button, Spinner, Image } from 'react-bootstrap';
-import { getBoard, deleteBoard, toggleLike, getLikeInfo } from '../api';
+import { getBoard, deleteBoard, toggleLike, getLikeInfo, SERVER_BASE_URL } from '../api';
 import { useAuthStore } from '@/store/authStore';
+import CommentSection from '../components/CommentSection';
 
 const BoardDetailPage = () => {
     const { boardId } = useParams();
@@ -61,7 +62,7 @@ const BoardDetailPage = () => {
             <p style={{ whiteSpace: 'pre-wrap' }}>{board.contents}</p>
 
             {board.boardImgs?.map((img) => (
-                <Image key={img.id} src={img.imgUrl} fluid className="mb-2 d-block" />
+                <Image key={img.id} src={`${SERVER_BASE_URL}${img.imgUrl}`} fluid className="mb-2 d-block" />
             ))}
 
             <div className="d-flex align-items-center gap-2 my-3">
@@ -78,6 +79,7 @@ const BoardDetailPage = () => {
                     <Button variant="outline-danger" size="sm" onClick={handleDelete}>삭제</Button>
                 </div>
             )}
+            <CommentSection boardId={boardId} />
         </Container>
     );
 };
