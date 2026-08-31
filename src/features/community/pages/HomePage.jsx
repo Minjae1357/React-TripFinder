@@ -8,6 +8,7 @@ const HomePage = () => {
         <nav>
             <Link to="/signup">회원가입</Link>
             <Link to="/login">로그인</Link>   
+            <Link to="/board">커뮤니티</Link>
         </nav>
         </div>
     );
