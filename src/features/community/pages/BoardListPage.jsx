@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Container, ListGroup, Nav, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { getBoardList } from '../api';
-
+import {useAuthStore} from '@/store/authStore';
 const BoardListPage = () => {
+    const {isLoggedIn} = useAuthStore();
     const [category, setCategory] = useState(null); // null=전체, 'NOTICE , 'REVIEW
     const [boards,setBoards] = useState([]);
     const [loading , setLoading] = useState(true);
+    const navigate = useNavigate();
+    const handleWriteClick = () => {
+        if(!isLoggedIn){
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+            return;
+        }
+        navigate('/board/write');
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -19,9 +29,7 @@ const BoardListPage = () => {
       <Container style={{maxWidth : '720px', marginTop: '40px'}}>
         <div className="d-flex justify-content-between align-items-center mb-3">
             <h3>게시판</h3>
-            <Link to="/board/write">
-                <Button variant='primary'>글쓰기</Button>
-            </Link>
+                <Button variant='primary' onClick={handleWriteClick}>글쓰기</Button>
         </div>
 
         {/* 카테고리 탭 */}
