@@ -1,0 +1,179 @@
+/* ==========================================================================
+   1. 헤더 전체 컨테이너 및 레이아웃
+   ========================================================================== */
+
+/* 상단 고정 헤더 바 전체 영역 */
+.tripfinder-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-height);
+  width: 100%;
+}
+
+/* 헤더 내부 콘텐츠를 중앙 정렬하고 양옆 여백을 주는 래퍼 */
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+
+/* ==========================================================================
+   2. 좌측 로고 영역
+   ========================================================================== */
+
+/* 좌측 로고 링크 박스 */
+.header-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* 로고 텍스트 (TripFinder) */
+.logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+
+/* ==========================================================================
+   3. 중앙 내비게이션 메뉴 (홈 / 장소 탐색 / 숙소 추천)
+   ========================================================================== */
+
+/* 메뉴 링크들을 감싸는 네비게이션 컨테이너 */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+/* 각 메뉴 링크 기본 스타일 */
+.nav-link {
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 메뉴 링크에 마우스를 올렸을 때 (호버 상태) */
+.nav-link:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+/* 현재 접속 중인 활성화된 메뉴 링크 */
+.nav-link--active {
+  background: var(--secondary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   4. 우측 사용자 영역 (로그인 상태 / 비로그인 상태)
+   ========================================================================== */
+
+/* 우측 전체 액션 영역 래퍼 (우측 끝 정렬) */
+.header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* 로그인 시 나타나는 유저 정보 그룹 (환영 문구 + 로그아웃 + 마이페이지) */
+.user-profile-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* "OOO님 환영합니다" 텍스트 */
+.welcome-text {
+  font-size: 14px;
+  color: var(--foreground);
+}
+
+/* 마이페이지 아이콘 링크 버튼 */
+.mypage-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.mypage-btn:hover {
+  background: var(--muted);
+}
+
+/* 마이페이지 이미지 아이콘 */
+.mypage-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* 비로그인 시 나타나는 버튼 그룹 (로그인 등) */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 테두리만 있는 버튼 (로그아웃 버튼) */
+.btn-ghost {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-ghost:hover {
+  background: var(--muted);
+}
+
+/* 색상이 채워진 메인 버튼 (로그인 버튼) */
+.btn-primary {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover {
+  background: #1a44b8;
+}
