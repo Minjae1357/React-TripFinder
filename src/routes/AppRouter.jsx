@@ -10,11 +10,12 @@ import Place from '@/features/place/Place';
 import Planner from '@/features/place/Planner';
 import BoardListPage from '@/features/community/pages/BoardListPage';
 import BoardWritePage from '@/features/community/pages/BoardWritePage';
+import BoardDetailPage from '../features/community/pages/BoardDetailPage';
 
 
 const AppRouter = () => {
     return (
-       <BrowserRouter>
+       <BrowserRouter> 
        <Header/>
         <Routes>
             <Route path="/signup" element={<SignupPage/>}/>
@@ -24,7 +25,7 @@ const AppRouter = () => {
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/board" element={<BoardListPage/>}/>
             <Route path="/board/write" element={<BoardWritePage/>}/>
-
+            <Route path="/board/:boardId" element={<BoardDetailPage/>}/>
             <Route path="/place" element={<Place />} />
             <Route path="/planner" element={<Planner />} />
             {/* <Route path="/placeinfo/:id" element={} /> */}
