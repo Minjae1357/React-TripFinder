@@ -40,7 +40,7 @@ const AppRouter = () => {
             <Route path="/cart" element={<CartPage/>}/>
             <Route path="/bookings" element={<BookingListPage/>}/>
             <Route path="/bookings/:bookingId" element={<BookingDetailPage/>}/>
-            <Route path="recommend" element={<AccommodationRecommendPage/>}/>
+            <Route path="/recommend" element={<AccommodationRecommendPage/>}/>
         </Routes>
        </BrowserRouter>
     );
