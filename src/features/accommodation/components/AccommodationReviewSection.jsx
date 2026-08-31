@@ -15,10 +15,10 @@ const AccommodationReviewSection = ({ accommodationId }) => {
     const navigate = useNavigate();
     const [hasBookingHistory, setHasBookingHistory] = useState(false);
 
-    //const hasBookingHistory = true; // 현재는 테스트용으로 true로 설정, 추후에 예약기능 완성 후 예약 이력 있음 여부로 교체 예정
-
     useEffect(() => {
-        checkBookingHistory(accommodationId).then(setHasBookingHistory);
+        checkBookingHistory(accommodationId)
+            .then(setHasBookingHistory)
+            .catch(() => setHasBookingHistory(false)); // 비로그인이나 그 외 에러 시 권한 없음 처리
     }, [accommodationId]);
 
     useEffect(() => {

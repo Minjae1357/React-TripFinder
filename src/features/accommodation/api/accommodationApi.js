@@ -1,26 +1,29 @@
-const BASE_URL = "http://localhost:8080/api";
+import axiosInstance from "../../../api/axiosInstance";
 
-// 상세 조회 api 응답
+// 상세 조회
 export async function fetchAccommodationDetail(accommodationId) {
-    const res = await fetch(`${BASE_URL}/accommodations/${accommodationId}`);
-    if (!res.ok) {
-        throw new Error("숙소 정보를 불러오지 못했습니다.");
+    try {
+        const res = await axiosInstance.get(`/accommodations/${accommodationId}`);
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "숙소 정보를 불러오지 못했습니다.", {cause:error});
     }
-    return res.json();
 }
-// 지도 마커용 숙소 간략 조회 api 응답
+// 지도 마커용 숙소 간략 조회
 export async function fetchAccommodationList(){
-    const res = await fetch(`${BASE_URL}/accommodations`);
-    if (!res.ok) {
-        throw new Error("숙소 목록을 불러오지 못했습니다.");
+    try {
+        const res = await axiosInstance.get('/accommodations');
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "숙소 목록을 불러오지 못했습니다.", {cause:error});
     }
-    return res.json();
 }
 // 숙소 추천
 export async function fetchRecommendations(region){
-    const res = await fetch(`${BASE_URL}/accommodations/recommend?region=${encodeURIComponent(region)}`);
-    if(!res.ok) {
-        throw new Error("숙소 추천을 불러오지 못했습니다.");
+    try {
+        const res = await axiosInstance.get('/accommodations/recommend', {params: { region}});
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "숙소 추천을 불러오지 못했습니다.", {cause:error});
     }
-    return res.json();
 }

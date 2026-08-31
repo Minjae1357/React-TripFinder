@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { formatDateTime } from '../utils/dateFormat';
-import { TEMP_USER_ID } from '../constants/tempAuth';
 import { deleteReview } from '../api/accommodationReviewApi';
 import { useNavigate } from 'react-router-dom';
+import {useAuthStore} from '@/store/authStore';
 
 // 리뷰 카드 컴포넌트
 const AccommodationReviewCard = ({ review, accommodationId, onDelete }) => {
     const [expanded, setExpanded] = useState(false);
     const isEdited = new Date(review.updatedAt) - new Date(review.createdAt) > 60000; // 1분 이상 차이나면 수정된 것으로 간주
-    const isOwner = review.userId === TEMP_USER_ID; // 작성자 본인 리뷰인지 확인(임시 사용자 ID 사용)
+    const currentUserId = useAuthStore((state)=>state.user?.id);
+    const isOwner = review.userId === currentUserId; // 작성자 본인 리뷰인지 확인
     const navigate = useNavigate();
 
     // 줄바꿈 개수가 3줄을 넘는지 확인

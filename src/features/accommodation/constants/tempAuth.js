@@ -1,1 +1,0 @@
-export const TEMP_USER_ID = 1; // 임시 사용자 ID, 실제 로그인 기능이 구현되면 제거될 예정

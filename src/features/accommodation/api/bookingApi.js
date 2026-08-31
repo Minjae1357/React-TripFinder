@@ -1,52 +1,53 @@
-const BASE_URL = "http://localhost:8080/api";
+import axiosInstance from "../../../api/axiosInstance";
 
 export async function createBooking(cartItemIds){
-    const res = await fetch(`${BASE_URL}/bookings`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({cartItemIds}),
-    });
-    if(!res.ok){
-        const message = await res.text();
-        throw new Error(message || "예약에 실패했습니다.");
+    try{
+        const res = await axiosInstance.post('/bookings', { cartItemIds});
+        return res.data;
+    }catch(error){
+        throw new Error(error.response?.data || "예약에 실패했습니다.", {cause:error})
     }
-    return res.json();
 }
 
 export async function fetchMyBookings(){
-    const res = await fetch(`${BASE_URL}/bookings`);
-    if(!res.ok) throw new Error("예약 목록을 불러오지 못했습니다.");
-    return res.json();
+    try {
+        const res = await axiosInstance.get('/bookings');
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "예약 목록을 불러오지 못했습니다.", {cause:error})
+    }
 }
 
 export async function fetchBooking(bookingId){
-    const res = await fetch(`${BASE_URL}/bookings/${bookingId}`);
-    if(!res.ok) throw new Error("예약 정보를 불러오지 못했습니다.");
-    return res.json();
+    try {
+        const res = await axiosInstance.get(`/bookings/${bookingId}`);
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "예약 정보를 불러오지 못했습니다.", {cause:error})
+    }
 }
 
 export async function cancelBooking(bookingId){
-    const res = await fetch(`${BASE_URL}/bookings/${bookingId}/cancel`, {
-        method: "PATCH",
-    });
-    if(!res.ok){
-        const message = await res.text();
-        throw new Error(message || "예약 취소에 실패했습니다.");
+    try {
+        await axiosInstance.patch(`/bookings/${bookingId}/cancel`);
+    } catch (error) {
+        throw new Error(error.response?.data || "예약 취소에 실패했습니다.", {cause:error})
     }
 }
 
 export async function deleteBooking(bookingId) {
-    const res = await fetch(`${BASE_URL}/bookings/${bookingId}`,{
-        method: "DELETE",
-    });
-    if(!res.ok){
-        const message = await res.text();
-        throw new Error(message || "예약 목록 삭제에 실패했습니다.");
-    } 
+    try {
+        await axiosInstance.delete(`/bookings/${bookingId}`);
+    } catch (error) {
+        throw new Error(error.response?.data || "예약 목록 삭제에 실패했습니다.", {cause:error})
+    }
 }
 
 export async function checkBookingHistory(accommodationId){
-    const res = await fetch(`${BASE_URL}/bookings/check?accommodationId=${accommodationId}`);
-    if (!res.ok) throw new Error("예약 이력 확인에 실패했습니다.");
-    return res.json();
+    try {
+        const res = await axiosInstance.get('/bookings/check', {params: {accommodationId}});
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data || "예약 이력 확인에 실패했습니다.", {cause:error})
+    }
 }

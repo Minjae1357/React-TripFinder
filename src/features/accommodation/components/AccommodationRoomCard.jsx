@@ -3,6 +3,7 @@ import { addCartItem } from '../api/cartApi';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Carousel from 'react-bootstrap/Carousel';
+import { useNavigate } from 'react-router-dom';
 
 const AccommodationRoomCard = ({room}) => {
     const [showForm, setShowForm] = useState(false);
@@ -15,6 +16,7 @@ const AccommodationRoomCard = ({room}) => {
     const [error, setError] = useState(null);
     const [dateRange, setDateRange] = useState([null,null]);
     const [checkInDate, checkOutDate] = dateRange;
+    const navigate = useNavigate();
 
     const formatDate = (date) => {
         if(!date) return null;
@@ -53,7 +55,13 @@ const AccommodationRoomCard = ({room}) => {
             alert('장바구니에 담았습니다.');
             setShowForm(false);
         } catch (error) {
-            setError(error.message);
+            if(error.message.includes('로그인')){
+                if(window.confirm('로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?')){
+                    navigate('/login');
+                }
+            }else{
+                setError(error.message);
+            }
         }finally{
             setSubmitting(false);
         }
@@ -97,17 +105,6 @@ const AccommodationRoomCard = ({room}) => {
                             isClearable
                         />
                     </div>
-                    {/* 달력 이전 방식 */}
-                    {/* <div className='row g-2 mb-2'>
-                        <div className='col'>
-                            <label className='form-label form-label-sm mb-0'>체크인</label>
-                            <input type='date' className='form-control form-control-sm' value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)}/>
-                        </div>
-                        <div className='col'>
-                            <label className='form-label form-label-sm mb-0'>체크아웃</label>
-                            <input type='date' className='form-control form-control-sm' value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)}/>
-                        </div>
-                    </div> */}
                     <div className='row g-2 mb-2'>
                         <div className='col'>
                             <label className='form-label form-label-sm mb-0'>인원</label>

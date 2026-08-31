@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { deleteCartItem, fetchCart } from '../api/cartApi';
 import { createBooking } from '../api/bookingApi';
 
@@ -8,6 +8,7 @@ const CartPage = () => {
     const [loading, setLoading] = useState(true);
     const [selectedIds, setSelectedIds] = useState([]); // 예약 대상으로 선택된 cartItemId 목록
     const [booking, setBooking] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,6 +21,10 @@ const CartPage = () => {
             .then((data) => {
                 setCart(data);
                 setSelectedIds(data.items.map((item) => item.cartItemId)); // 전체 선택이 기본값
+            })
+            .catch((error) => {
+                console.error(error.message);
+                setError(error.message);
             })
             .finally(() => setLoading(false));
     };
@@ -56,7 +61,8 @@ const CartPage = () => {
     };
 
     if(loading) return <p className='text-center py-4'>불러오는 중...</p>;
-    if(!cart || cart.items.length === 0){
+    if (error) return <p className='text-center py-4 text-danger'>{error}</p>
+    if(!cart || !cart.items || cart.items.length === 0){
         return <p className='text-center py-4'>장바구니가 비어있습니다.</p>
     }
 
