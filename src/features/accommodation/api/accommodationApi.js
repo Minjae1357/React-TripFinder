@@ -16,3 +16,11 @@ export async function fetchAccommodationList(){
     }
     return res.json();
 }
+// 숙소 추천
+export async function fetchRecommendations(region){
+    const res = await fetch(`${BASE_URL}/accommodations/recommend?region=${encodeURIComponent(region)}`);
+    if(!res.ok) {
+        throw new Error("숙소 추천을 불러오지 못했습니다.");
+    }
+    return res.json();
+}

@@ -5,6 +5,7 @@ import AccommodationReviewSortSelect from './AccommodationReviewSortSelect';
 import AccommodationReviewCard from './AccommodationReviewCard';
 import AccommodationPagination from './AccommodationPagination';
 import { useNavigate } from 'react-router-dom';
+import { checkBookingHistory } from '../api/bookingApi';
 
 const AccommodationReviewSection = ({ accommodationId }) => {
     const [summary, setSummary] = useState(null);
@@ -12,8 +13,13 @@ const AccommodationReviewSection = ({ accommodationId }) => {
     const [sort, setSort] = useState("recommend");
     const [page, setPage] = useState(0);
     const navigate = useNavigate();
+    const [hasBookingHistory, setHasBookingHistory] = useState(false);
 
-    const hasBookingHistory = true; // 현재는 테스트용으로 true로 설정, 추후에 예약기능 완성 후 예약 이력 있음 여부로 교체 예정
+    //const hasBookingHistory = true; // 현재는 테스트용으로 true로 설정, 추후에 예약기능 완성 후 예약 이력 있음 여부로 교체 예정
+
+    useEffect(() => {
+        checkBookingHistory(accommodationId).then(setHasBookingHistory);
+    }, [accommodationId]);
 
     useEffect(() => {
         fetchAccommodationReviewSummary(accommodationId).then(setSummary);

@@ -4,6 +4,10 @@ import HomePage from '@/features/community/pasges/HomePage';
 import SignupPage from '@/features/auth/pages/SignupPage';
 import AccommodationDetailPage from '../features/accommodation/pages/AccommodationDetailPage';
 import AccommodationReviewCreatePage from '../features/accommodation/pages/AccommodationReviewCreatePage';
+import CartPage from '../features/accommodation/pages/CartPage';
+import BookingListPage from '../features/accommodation/pages/BookingListPage';
+import BookingDetailPage from '../features/accommodation/pages/BookingDetailPage';
+import AccommodationRecommendPage from '../features/accommodation/pages/AccommodationRecommendPage';
 
 const AppRouter = () => {
     return (
@@ -15,6 +19,10 @@ const AppRouter = () => {
             <Route path="/accommodation/:accommodationId" element={<AccommodationDetailPage/>}/>
             <Route path="/accommodation/:accommodationId/review/new" element={<AccommodationReviewCreatePage/>}/>
             <Route path="/accommodation/:accommodationId/review/:reviewId/edit" element={<AccommodationReviewCreatePage/>}/>
+            <Route path="/cart" element={<CartPage/>}/>
+            <Route path="/bookings" element={<BookingListPage/>}/>
+            <Route path="/bookings/:bookingId" element={<BookingDetailPage/>}/>
+            <Route path="recommend" element={<AccommodationRecommendPage/>}/>
         </Routes>
        </BrowserRouter>
     );

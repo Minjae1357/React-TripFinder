@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchAccommodationDetail } from '../api/accommodationApi';
 import AccommodationInfo from '../components/AccommodationInfo';
 import RoomList from '../components/RoomList';
@@ -10,6 +10,7 @@ const AccommodationDetailPage = () => {
     const [accommodation, setAccommodation] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAccommodation = async () => {
@@ -32,6 +33,11 @@ const AccommodationDetailPage = () => {
 
     return (
         <div>
+            <div className='d-flex justify-content-end mb-2'>
+                <button className='btn btn-outline-primary btn-sm' onClick={()=>navigate('/cart')}>
+                    <i className='bi bi-cart'></i> 내 장바구니
+                </button>
+            </div>
             <AccommodationInfo accommodation={accommodation} />
             <RoomList rooms={accommodation.rooms} />
             <AccommodationReviewSection accommodationId={accommodationId} />
