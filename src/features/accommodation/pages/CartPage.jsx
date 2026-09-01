@@ -98,7 +98,7 @@ const CartPage = () => {
         <div className="cart-state-card">
           <span className="state-icon"></span>
           <p>장바구니가 비어있습니다.</p>
-          <button className="btn-state-action" onClick={() => navigate('/accommodation')}>
+          <button className="btn-state-action" onClick={() => navigate('/recommend')}>
             숙소 둘러보기
           </button>
         </div>

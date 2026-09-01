@@ -6,6 +6,7 @@ import OAuthSuccessPage from '@/features/auth/pages/OAuthSuccessPage';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MyPage from '@/features/auth/pages/MyPage';
+import ErrorPage from '@/components/ErrorPage';
 
 import Place from '@/features/place/Place';
 import Planner from '@/features/place/Planner';
@@ -49,6 +50,7 @@ const AppRouter = () => {
             <Route path="/bookings/:bookingId" element={<BookingDetailPage/>}/>
             <Route path="/recommend" element={<AccommodationRecommendPage/>}/>
             <Route path="/board/:boardId/edit" element={<BoardEditPage/>}/>
+            <Route path="*" element={<ErrorPage/>}/>
 
         </Routes>
         {!hideFooter && <Footer />}

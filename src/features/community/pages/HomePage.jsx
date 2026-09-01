@@ -107,7 +107,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. 인기 여행지 큐레이션 */}
+      {/* 3. 인기 여행지 큐레이션 (클릭 시 해당 장소명으로 검색 이동) */}
       <section className="places-section">
         <div className="section-wrap">
           <div className="places-header">
@@ -121,7 +121,11 @@ export default function HomePage() {
           </div>
           <div className="places-grid">
             {placesSection.items.map((place) => (
-              <div key={place.id} className="place-card" onClick={() => navigate('/place')}>
+              <div
+                key={place.id}
+                className="place-card"
+                onClick={() => navigate(`/place?mode=search&q=${encodeURIComponent(place.name)}`)}
+              >
                 <div className="place-img">
                   <img src={place.img} alt={place.name} />
                   <span className="place-tag">{place.tag}</span>

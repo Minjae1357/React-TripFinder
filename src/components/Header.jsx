@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
 import axiosInstance from '@/api/axiosInstance';
@@ -55,6 +55,15 @@ export default function Header() {
           >
             커뮤니티
           </NavLink>
+          {/* 로그인 상태에서만 노출되는 장바구니 탭 */}
+          {isLoggedIn && (
+            <NavLink
+              to="/cart"
+              className={({ isActive }) => (isActive ? 'nav-link nav-link--active' : 'nav-link')}
+            >
+              장바구니
+            </NavLink>
+          )}
         </nav>
 
         {/* 우측 유저 액션 영역 */}
