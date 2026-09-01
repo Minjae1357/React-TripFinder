@@ -86,15 +86,6 @@ export default function Place() {
     routeHook.resetRouteState();
   }, [clearMarkers, clearPolylines, routeHook, searchHook]);
 
-  const handleHomeClick = () => {
-    resetAllState();
-    searchHook.setKeyword('');
-    searchHook.setActiveCategory(null);
-    setCurrentMode('search');
-    setIsOpen(true);
-    navigate('/');
-  };
-
   const handlePlaceInfo = (poi) => {
     navigate(`/placeinfo/${poi.id}`);
   };
@@ -119,7 +110,6 @@ export default function Place() {
         setCurrentMode('route');
         if (transitParam) routeHook.setSelectedTransit(transitParam);
 
-        // 1. 출발지 POI 정보 복원
         let startObj = null;
         if (startParam) {
           if (startParam === DEFAULT_START_LOCATION.id || startParam === DEFAULT_START_LOCATION.name) {
@@ -132,7 +122,6 @@ export default function Place() {
           if (startObj) routeHook.setStartPoi(startObj);
         }
 
-        // 2. 도착지 POI 정보 복원
         let endObj = null;
         if (endParam) {
           if (/^\d+$/.test(endParam)) {
@@ -143,7 +132,6 @@ export default function Place() {
           if (endObj) routeHook.setEndPoi(endObj);
         }
 
-        // 3. 경로 탐색 실행
         if (startParam && endParam) {
           await routeHook.executeRouteSearch(
             startObj,
@@ -182,7 +170,6 @@ export default function Place() {
     }
   }, [isRestoringRef, mapInstanceRef, routeHook, searchHook]);
 
-  // [수정] 플래너 페이지로 데이터 세션 저장 및 라우트 이동
   const handleNextStep = () => {
     const payload = routeHook.createNextPayload();
     sessionStorage.setItem('tmap_next_payload', JSON.stringify(payload));
@@ -364,7 +351,8 @@ export default function Place() {
 
   return (
     <div className="app-container">
-      <ModeBar currentMode={currentMode} isOpen={isOpen} onHomeClick={handleHomeClick} onToggleMode={toggleSidebarMode} />
+      {/* 홈 버튼 제거된 모드 바 */}
+      <ModeBar currentMode={currentMode} onToggleMode={toggleSidebarMode} />
 
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <button className="toggle-btn" onClick={() => setIsOpen((prev) => !prev)}>

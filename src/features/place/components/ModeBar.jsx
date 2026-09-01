@@ -1,21 +1,25 @@
-export default function ModeBar({ currentMode, isOpen, onHomeClick, onToggleMode }) {
+import React from 'react';
+
+export default function ModeBar({ currentMode, onToggleMode }) {
   return (
-    <nav className="mode-bar">
-      <button className="mode-btn" onClick={onHomeClick}>
-        홈
-      </button>
-      <button 
-        className={`mode-btn ${isOpen && currentMode === 'search' ? 'active' : ''}`}
+    <div className="mode-bar">
+      {/* 탐색 모드 버튼 */}
+      <button
+        className={`mode-btn ${currentMode === 'search' ? 'active' : ''}`}
         onClick={() => onToggleMode('search')}
+        title="장소 탐색"
       >
-        검색
+        탐색
       </button>
-      <button 
-        className={`mode-btn ${isOpen && currentMode === 'route' ? 'active' : ''}`}
+
+      {/* 길찾기 모드 버튼 */}
+      <button
+        className={`mode-btn ${currentMode === 'route' ? 'active' : ''}`}
         onClick={() => onToggleMode('route')}
+        title="길찾기"
       >
         길찾기
       </button>
-    </nav>
+    </div>
   );
 }

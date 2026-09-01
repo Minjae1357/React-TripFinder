@@ -1,0 +1,584 @@
+/* ==========================================================================
+   1. 전체 컨테이너
+   ========================================================================== */
+
+/* 질문 폼 컨테이너 */
+.planner-form-container {
+  padding: 36px 24px;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  min-height: calc(100vh - var(--nav-height, 64px));
+}
+
+/* 와이드 플랜 결과 뷰 컨테이너 (최대 1280px) */
+.planner-wide-container {
+  padding: 32px 32px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  min-height: calc(100vh - var(--nav-height, 64px));
+}
+
+.planner-empty-box {
+  padding: 80px 24px;
+  text-align: center;
+  color: var(--muted-foreground, #64748B);
+}
+
+/* ==========================================================================
+   2. 좌우 2분할 (Split Layout)
+   ========================================================================== */
+
+.planner-split-layout {
+  display: grid;
+  /* 좌측 너비를 420px로 확장하여 여유 공간 확보 */
+  grid-template-columns: 420px minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+/* 좌측 패널 (Sticky 고정) */
+.planner-left-summary {
+  position: sticky;
+  top: calc(var(--nav-height, 64px) + 20px);
+  display: flex;
+  flex-direction: column;
+  background: var(--card, #FFFFFF);
+  padding: 26px 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border, #E2E8F0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* 우측 타임라인 영역 */
+.planner-right-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   3. 상단 헤더 및 타이틀
+   ========================================================================== */
+
+.planner-top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.planner-back-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.planner-back-btn:hover {
+  background: var(--muted, #F1F5F9);
+}
+
+.form-back-btn {
+  margin-bottom: 20px;
+}
+
+.planner-badge-complete {
+  font-size: 12px;
+  font-weight: 600;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* 제목 텍스트 줄바꿈 방지 & 단어 보존 */
+.planner-main-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+  word-break: keep-all; /* 단어 중간 잘림 방지 */
+}
+
+.planner-subtitle-desc {
+  color: var(--muted-foreground, #64748B);
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.planner-summary-desc {
+  color: var(--muted-foreground, #64748B);
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* ==========================================================================
+   4. 대시보드 & 상세 경비 내역
+   ========================================================================== */
+
+.planner-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 14px 12px;
+  background: var(--muted, #F8FAFC);
+  border-radius: 10px;
+  border: 1px solid var(--border, #E2E8F0);
+}
+
+.dashboard-col {
+  text-align: center;
+}
+
+.dashboard-col.col-divider {
+  border-left: 1px solid var(--border, #E2E8F0);
+  border-right: 1px solid var(--border, #E2E8F0);
+}
+
+.col-label {
+  font-size: 11.5px;
+  color: var(--muted-foreground, #64748B);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.col-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  white-space: nowrap;
+}
+
+.col-val.col-accent {
+  color: var(--primary, #1D4ED8);
+}
+
+.planner-cost-box {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--secondary, #EFF6FF);
+  border-radius: 10px;
+  border: 1px solid #DBEAFE;
+  font-size: 13px;
+  color: #1E40AF;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cost-box-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 13.5px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.cost-row span {
+  font-size: 12.5px;
+}
+
+.cost-row strong {
+  white-space: nowrap;
+}
+
+.btn-booking-submit {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transition: all 0.15s ease;
+}
+
+.btn-booking-submit:hover {
+  background: #1E293B;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   5. 우측 타임라인 카드 스타일
+   ========================================================================== */
+
+.timeline-day-card {
+  background: var(--card, #FFFFFF);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border, #E2E8F0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-day-title {
+  margin: 0 0 18px 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  border-bottom: 1.5px solid var(--muted, #F1F5F9);
+  padding-bottom: 10px;
+}
+
+.timeline-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-activity-item {
+  display: flex;
+  gap: 16px;
+  font-size: 13.5px;
+  align-items: flex-start;
+}
+
+.activity-time-badge {
+  font-weight: 700;
+  color: var(--primary, #1D4ED8);
+  min-width: 48px;
+  font-size: 13.5px;
+  padding-top: 1px;
+}
+
+.activity-info-box {
+  flex: 1;
+}
+
+.activity-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.activity-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+}
+
+.activity-cat {
+  color: var(--muted-foreground, #64748B);
+  font-size: 12px;
+}
+
+.activity-desc {
+  color: #475569;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.activity-cost {
+  color: #059669;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. 단계별 설정 폼 섹션 (Form View)
+   ========================================================================== */
+
+.planner-step-section {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border, #E2E8F0);
+}
+
+.planner-step-section.no-border {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  margin-bottom: 14px;
+}
+
+.step-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chip-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--border, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-btn:hover {
+  background: var(--muted, #F1F5F9);
+  border-color: #CBD5E1;
+}
+
+.chip-btn.active {
+  border-color: var(--primary, #1D4ED8);
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+}
+
+.chip-btn-none.active {
+  border-color: var(--muted-foreground, #64748B);
+  background: var(--muted-foreground, #64748B);
+  color: #FFFFFF;
+}
+
+.planner-input-field {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #E2E8F0);
+  font-size: 14px;
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  outline: none;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.planner-input-field:focus {
+  border-color: var(--primary, #1D4ED8);
+}
+
+.loading-poi-text {
+  font-size: 13px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.planner-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #E2E8F0);
+  font-size: 14px;
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  outline: none;
+  resize: vertical;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.planner-textarea:focus {
+  border-color: var(--primary, #1D4ED8);
+}
+
+.detail-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: var(--muted, #F1F5F9);
+  border-radius: 10px;
+  border: 1px solid var(--border, #E2E8F0);
+}
+
+.preview-text {
+  font-size: 13px;
+  color: var(--foreground, #0F172A);
+  display: flex;
+  align-items: center;
+}
+
+.preview-text .divider {
+  margin: 0 10px;
+  color: #CBD5E1;
+}
+
+.btn-open-modal {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+  transition: all 0.15s ease;
+}
+
+.btn-open-modal:hover {
+  background: var(--muted, #F1F5F9);
+}
+
+.btn-plan-generate {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-plan-generate:hover:not(:disabled) {
+  background: #1A44B8;
+  transform: translateY(-1px);
+}
+
+.btn-plan-generate:disabled {
+  background: #94A3B8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   7. 모달 팝업
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: var(--card, #FFFFFF);
+  padding: 24px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border, #E2E8F0);
+}
+
+.modal-title {
+  margin: 0 0 18px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+}
+
+.modal-time-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.modal-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--foreground, #0F172A);
+}
+
+.modal-time-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #E2E8F0);
+  font-size: 14px;
+  box-sizing: border-box;
+  color: var(--foreground, #0F172A);
+  background: var(--card, #FFFFFF);
+}
+
+.modal-pref-box {
+  margin-bottom: 24px;
+}
+
+.modal-pref-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-pref-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  border: 1.5px solid var(--border, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  transition: all 0.15s ease;
+}
+
+.modal-pref-btn.active {
+  border-color: var(--primary, #1D4ED8);
+  background: var(--secondary, #EFF6FF);
+  color: var(--primary, #1D4ED8);
+  font-weight: 600;
+}
+
+.modal-submit-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.modal-submit-btn:hover {
+  background: #1A44B8;
+}
+
+/* ==========================================================================
+   8. 반응형 (1024px 이하일 때 1열 전환)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .planner-split-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .planner-left-summary {
+    position: static;
+  }
+}
