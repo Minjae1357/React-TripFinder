@@ -1,0 +1,283 @@
+.cart-page {
+  min-height: calc(100vh - var(--nav-height, 64px));
+  background: var(--background, #FFFFFF);
+  padding: 48px 20px 80px;
+}
+
+.cart-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   1. 헤더 영역
+   ========================================================================== */
+
+.cart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cart-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.cart-header p {
+  font-size: 14.5px;
+  color: var(--muted-foreground, #64748B);
+  margin: 0;
+}
+
+.btn-booking-nav {
+  padding: 8px 16px;
+  background: var(--card, #FFFFFF);
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.btn-booking-nav:hover {
+  background: var(--muted, #F8FAFC);
+  border-color: #CBD5E1;
+}
+
+/* ==========================================================================
+   2. 장바구니 아이템 리스트
+   ========================================================================== */
+
+.cart-items-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cart-item-card {
+  background: var(--card, #FFFFFF);
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cart-item-card.cart-item-selected {
+  border-color: #BFDBFE;
+  background: #FAFCFF;
+}
+
+.cart-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.checkbox-wrap input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--primary, #1D4ED8);
+  cursor: pointer;
+}
+
+.item-title-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item-hotel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground, #64748B);
+}
+
+.item-room-title {
+  font-size: 16px;
+  color: var(--foreground, #0F172A);
+  line-height: 1.4;
+}
+
+.btn-cart-item-del {
+  padding: 4px 10px;
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #DC2626;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-cart-item-del:hover {
+  background: #FCA5A5;
+  color: #B91C1C;
+}
+
+.cart-item-details {
+  font-size: 13px;
+  color: var(--muted-foreground, #64748B);
+  padding: 10px 0;
+  border-top: 1px dashed var(--border, #E2E8F0);
+  border-bottom: 1px dashed var(--border, #E2E8F0);
+  margin-bottom: 12px;
+}
+
+.cart-item-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.price-label {
+  font-size: 13px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.price-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+}
+
+/* ==========================================================================
+   3. 하단 요약 카드 및 결제 버튼
+   ========================================================================== */
+
+.cart-summary-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-amount-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+}
+
+.summary-label strong {
+  color: var(--primary, #1D4ED8);
+}
+
+.summary-total {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary, #1D4ED8);
+}
+
+.btn-checkout {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary, #1D4ED8);
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+  transition: background-color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-checkout:hover:not(:disabled) {
+  background: #1A44B8;
+  transform: translateY(-1px);
+}
+
+.btn-checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   4. 상태별 UI (로딩 / 에러 / 빈 장바구니)
+   ========================================================================== */
+
+.cart-state-card {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 60px 24px;
+  text-align: center;
+  background: var(--card, #FFFFFF);
+  border: 1px dashed var(--border, #E2E8F0);
+  border-radius: 16px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.state-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.btn-state-action {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-state-action:hover {
+  background: #1A44B8;
+}
+
+.cart-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--primary, #1D4ED8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 14px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

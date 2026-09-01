@@ -1,0 +1,264 @@
+/* ==========================================================================
+   댓글 섹션 컨테이너
+   ========================================================================== */
+
+.comment-section-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.comment-section-header h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comment-count {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary, #1D4ED8);
+}
+
+/* ==========================================================================
+   댓글 리스트 & 아이템
+   ========================================================================== */
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-item {
+  background: var(--muted, #F8FAFC);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 12px;
+  padding: 14px 18px;
+  transition: background-color 0.15s ease;
+}
+
+.comment-item:hover {
+  background: #F1F5F9;
+}
+
+/* 대댓글 스타일 */
+.comment-reply {
+  margin-left: 28px;
+  margin-top: 10px;
+  background: var(--card, #FFFFFF);
+  border-left: 3px solid var(--primary, #1D4ED8);
+}
+
+.comment-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-main-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.comment-user-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.comment-avatar {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: var(--foreground, #334155);
+  word-break: break-word;
+}
+
+/* 액션 버튼 그룹 */
+.comment-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted-foreground, #64748B);
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.15s ease;
+}
+
+.btn-text:hover {
+  color: var(--primary, #1D4ED8);
+  text-decoration: underline;
+}
+
+.btn-text.text-danger:hover {
+  color: #DC2626;
+}
+
+/* ==========================================================================
+   수정 모드
+   ========================================================================== */
+
+.comment-edit-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.comment-edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 8px;
+  font-size: 13.5px;
+  outline: none;
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+}
+
+.comment-edit-input:focus {
+  border-color: var(--primary, #1D4ED8);
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-comment-save {
+  padding: 8px 14px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-comment-cancel {
+  padding: 8px 14px;
+  background: var(--muted, #E2E8F0);
+  color: var(--muted-foreground, #475569);
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   대댓글 알림 및 댓글 입력 폼
+   ========================================================================== */
+
+.reply-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--secondary, #EFF6FF);
+  border: 1px solid #BFDBFE;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--primary, #1D4ED8);
+  font-weight: 600;
+}
+
+.btn-reply-cancel {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--muted-foreground, #64748B);
+  cursor: pointer;
+}
+
+.btn-reply-cancel:hover {
+  color: #DC2626;
+}
+
+.comment-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  transition: border-color 0.15s ease;
+}
+
+.comment-input:focus {
+  border-color: var(--primary, #1D4ED8);
+}
+
+.comment-input:disabled {
+  background: var(--muted, #F8FAFC);
+  cursor: not-allowed;
+}
+
+.btn-comment-submit {
+  padding: 0 22px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-comment-submit:hover:not(:disabled) {
+  background: #1A44B8;
+}
+
+.btn-comment-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.comment-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted-foreground, #94A3B8);
+  font-size: 14px;
+  border: 1px dashed var(--border, #E2E8F0);
+  border-radius: 12px;
+}

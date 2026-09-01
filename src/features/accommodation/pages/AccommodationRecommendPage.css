@@ -1,0 +1,249 @@
+.recommend-page {
+  min-height: calc(100vh - var(--nav-height, 64px));
+  background: var(--background, #FFFFFF);
+  padding: 48px 20px 80px;
+}
+
+.recommend-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   1. 헤더 영역
+   ========================================================================== */
+
+.recommend-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.recommend-header p {
+  font-size: 15px;
+  color: var(--muted-foreground, #64748B);
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. 지역 선택 칩 리스트
+   ========================================================================== */
+
+.region-chips-wrapper {
+  background: var(--muted, #F8FAFC);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.region-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--foreground, #0F172A);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.region-chip:hover {
+  border-color: var(--primary, #1D4ED8);
+  color: var(--primary, #1D4ED8);
+}
+
+.region-chip--active {
+  background: var(--primary, #1D4ED8);
+  border-color: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+}
+
+/* ==========================================================================
+   3. 숙소 추천 카드 목록 & 아이콘 크기 제어
+   ========================================================================== */
+
+.recommend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hotel-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.15s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.08);
+  border-color: #BFDBFE;
+}
+
+.hotel-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hotel-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 카드 내 호텔 아이콘 크기 고정 */
+.hotel-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--muted, #F8FAFC);
+  border: 1px solid var(--border, #E2E8F0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.hotel-card-icon {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain;
+  display: block;
+}
+
+.hotel-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hotel-badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hotel-type-badge {
+  font-size: 11.5px;
+  font-weight: 600;
+  background: var(--secondary, #EFF6FF);
+  color: var(--primary, #1D4ED8);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.hotel-region-badge {
+  font-size: 12px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.hotel-name {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--foreground, #0F172A);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hotel-rating-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-icon {
+  font-size: 15px;
+}
+
+.star-score {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+}
+
+.review-count {
+  font-size: 12px;
+  color: var(--muted-foreground, #64748B);
+}
+
+/* ==========================================================================
+   4. 상태별 UI (플레이스홀더, 로딩, 빈 데이터)
+   ========================================================================== */
+
+.recommend-placeholder,
+.recommend-loading,
+.recommend-empty {
+  padding: 64px 20px;
+  text-align: center;
+  background: var(--card, #FFFFFF);
+  border: 1px dashed var(--border, #E2E8F0);
+  border-radius: 16px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.placeholder-icon-wrap {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-hotel-img {
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: contain;
+}
+
+.recommend-empty span {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.recommend-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--primary, #1D4ED8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,175 @@
+.booking-list-page {
+  min-height: calc(100vh - var(--nav-height, 64px));
+  background: var(--background, #FFFFFF);
+  padding: 48px 20px 80px;
+}
+
+.booking-list-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   1. 헤더 영역
+   ========================================================================== */
+
+.booking-list-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.booking-list-header p {
+  font-size: 14.5px;
+  color: var(--muted-foreground, #64748B);
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. 예약 카드 리스트
+   ========================================================================== */
+
+.booking-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.booking-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.15s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.08);
+  border-color: #BFDBFE;
+}
+
+.booking-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.booking-status-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.badge-confirmed {
+  background: var(--secondary, #EFF6FF);
+  color: var(--primary, #1D4ED8);
+}
+
+.badge-pending {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.badge-canceled {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+.booking-amount {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+}
+
+.booking-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border, #E2E8F0);
+}
+
+.booking-date {
+  font-size: 13px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.btn-booking-delete {
+  padding: 4px 10px;
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #DC2626;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-booking-delete:hover {
+  background: #FCA5A5;
+  color: #B91C1C;
+}
+
+/* ==========================================================================
+   3. 로딩 / 빈 데이터 상태
+   ========================================================================== */
+
+.booking-state-card {
+  padding: 72px 20px;
+  text-align: center;
+  background: var(--card, #FFFFFF);
+  border: 1px dashed var(--border, #E2E8F0);
+  border-radius: 16px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.state-icon {
+  font-size: 38px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.btn-explore {
+  margin-top: 14px;
+  padding: 10px 20px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-explore:hover {
+  background: #1A44B8;
+}
+
+.booking-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--primary, #1D4ED8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

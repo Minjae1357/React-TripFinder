@@ -128,7 +128,7 @@ export default function HomePage() {
                 </div>
                 <div className="place-info">
                   <h4>{place.name}</h4>
-                  <p>📍 {place.city}</p>
+                  <p>{place.city}</p>
                 </div>
               </div>
             ))}

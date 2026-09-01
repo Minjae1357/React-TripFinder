@@ -20,11 +20,6 @@ export default function MyPage() {
     }
   };
 
-  // '전체 보기' 및 카드 클릭 시 미구현 알림
-  const handleNotImplemented = () => {
-    alert('준비 중인 기능입니다.');
-  };
-
   if (!user) {
     return (
       <div className="mypage-empty">
@@ -77,31 +72,31 @@ export default function MyPage() {
 
         {/* 3. 통계 요약 카드 */}
         <div className="mypage-stats">
-          <div className="stat-card">
+          <div className="stat-card" style={{ cursor: 'pointer' }} onClick={() => navigate('/bookings')}>
             <span className="stat-num">{defaultStats.tripCount}</span>
-            <span className="stat-label">여행 기록</span>
+            <span className="stat-label">예약 내역</span>
           </div>
           <div className="stat-card">
             <span className="stat-num">{defaultStats.placeCount}</span>
             <span className="stat-label">방문 장소</span>
           </div>
-          <div className="stat-card">
+          <div className="stat-card" style={{ cursor: 'pointer' }} onClick={() => navigate('/board')}>
             <span className="stat-num">{defaultStats.postCount}</span>
             <span className="stat-label">작성 게시글</span>
           </div>
         </div>
 
-        {/* 4. 나의 여행 기록 섹션 */}
+        {/* 4. 나의 여행/예약 기록 섹션 */}
         <section className="mypage-section">
           <div className="section-header">
             <h3>나의 여행 기록</h3>
-            <button className="text-btn" onClick={handleNotImplemented}>
+            <button className="text-btn" onClick={() => navigate('/bookings')}>
               전체 보기 →
             </button>
           </div>
           <div className="trips-grid">
             {trips.map((trip) => (
-              <div key={trip.id} className="trip-card" onClick={handleNotImplemented}>
+              <div key={trip.id} className="trip-card" onClick={() => navigate('/bookings')}>
                 <div className="trip-img">
                   <img
                     src={trip.img && trip.img.trim() !== '' ? trip.img : defaultTripImg}
