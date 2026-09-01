@@ -185,6 +185,8 @@
   cursor: pointer;
   position: relative;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .feature-card:hover {
@@ -193,11 +195,27 @@
   border-color: #93C5FD;
 }
 
-.feature-icon {
-  font-size: 32px;
-  display: block;
+/* ── [여기서부터 아이콘 크기 제어 스타일] ── */
+.feature-icon-wrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 16px;
+  flex-shrink: 0;
 }
+
+.feature-icon-img,
+.feature-icon-wrap img {
+  width: 38px !important;
+  height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  object-fit: contain;
+  display: block;
+}
+/* ────────────────────────────────────────── */
 
 .feature-card h3 {
   font-size: 19px;
