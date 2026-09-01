@@ -1,0 +1,79 @@
+.acc-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   1. 상단 뱃지 영역
+   ========================================================================== */
+
+.acc-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.acc-type-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--secondary, #EFF6FF);
+  color: var(--primary, #1D4ED8);
+}
+
+.acc-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FEF3C7;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.acc-rating-badge .star-icon {
+  font-size: 13px;
+}
+
+.acc-rating-badge .rating-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #D97706;
+}
+
+/* ==========================================================================
+   2. 숙소 제목
+   ========================================================================== */
+
+.acc-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   3. 주소 정보
+   ========================================================================== */
+
+.acc-address-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-foreground, #64748B);
+  font-size: 14px;
+}
+
+.location-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.address-text {
+  line-height: 1.5;
+  word-break: keep-all;
+}
