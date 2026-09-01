@@ -1,0 +1,323 @@
+.board-detail-page {
+  min-height: calc(100vh - var(--nav-height, 64px));
+  background: var(--background, #FFFFFF);
+  padding: 40px 20px 80px;
+}
+
+.board-detail-inner {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   1. 상단 내비게이션 & 관리 버튼
+   ========================================================================== */
+
+.detail-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--muted-foreground, #64748B);
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.15s ease;
+}
+
+.btn-back:hover {
+  color: var(--foreground, #0F172A);
+}
+
+.writer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-edit {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  color: var(--foreground, #0F172A);
+}
+
+.btn-edit:hover {
+  background: var(--muted, #F8FAFC);
+  border-color: #CBD5E1;
+}
+
+.btn-delete {
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+}
+
+.btn-delete:hover {
+  background: #FCA5A5;
+  color: #B91C1C;
+}
+
+/* ==========================================================================
+   2. 상세 본문 카드
+   ========================================================================== */
+
+.board-detail-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+}
+
+.detail-header {
+  border-bottom: 1px solid var(--border, #E2E8F0);
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+}
+
+.detail-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.post-category {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.cat-notice {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.cat-review {
+  background: var(--secondary, #EFF6FF);
+  color: var(--primary, #1D4ED8);
+}
+
+.detail-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted-foreground, #64748B);
+}
+
+.detail-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  line-height: 1.35;
+  margin: 0 0 18px;
+  letter-spacing: -0.5px;
+}
+
+.detail-author-info {
+  display: flex;
+  align-items: center;
+}
+
+.author-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 38px;
+  height: 38px;
+  background: var(--muted, #F1F5F9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.author-profile > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+}
+
+.post-date {
+  font-size: 12.5px;
+  color: var(--muted-foreground, #64748B);
+}
+
+/* ==========================================================================
+   3. 내용 & 이미지 갤러리
+   ========================================================================== */
+
+.detail-content {
+  margin-bottom: 36px;
+}
+
+.detail-text {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--foreground, #1E293B);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 24px;
+}
+
+.detail-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.gallery-item {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border, #E2E8F0);
+  background: var(--muted, #F8FAFC);
+}
+
+.detail-img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==========================================================================
+   4. 좋아요 반응 영역
+   ========================================================================== */
+
+.detail-reaction-area {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border, #E2E8F0);
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 1.5px solid #E2E8F0;
+  background: var(--card, #FFFFFF);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+  border-color: #FDA4AF;
+  background: #FFF1F2;
+  transform: translateY(-1px);
+}
+
+.like-btn.liked {
+  border-color: #F43F5E;
+  background: #FFE4E6;
+}
+
+.heart-icon {
+  font-size: 16px;
+}
+
+.like-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+}
+
+.like-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #E11D48;
+}
+
+/* ==========================================================================
+   5. 댓글 섹션 래퍼
+   ========================================================================== */
+
+.detail-comment-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* ==========================================================================
+   6. 로딩 & 예외 UI
+   ========================================================================== */
+
+.board-detail-loading,
+.board-detail-empty {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--muted-foreground, #64748B);
+}
+
+.board-detail-empty span {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.btn-back-list {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: var(--primary, #1D4ED8);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.board-detail-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--primary, #1D4ED8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 14px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

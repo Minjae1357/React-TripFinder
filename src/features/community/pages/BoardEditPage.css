@@ -1,0 +1,163 @@
+.board-edit-page {
+  min-height: calc(100vh - var(--nav-height, 64px));
+  background: var(--background, #FFFFFF);
+  padding: 48px 20px 80px;
+}
+
+.board-edit-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   1. 헤더
+   ========================================================================== */
+
+.board-edit-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--foreground, #0F172A);
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.board-edit-header p {
+  font-size: 14.5px;
+  color: var(--muted-foreground, #64748B);
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. 폼 카드
+   ========================================================================== */
+
+.board-edit-card {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground, #0F172A);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: var(--foreground, #0F172A);
+  background: var(--background, #FFFFFF);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary, #1D4ED8);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 220px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   3. 액션 버튼 그룹
+   ========================================================================== */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-cancel {
+  padding: 11px 22px;
+  background: transparent;
+  border: 1.5px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-foreground, #64748B);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: var(--muted, #F8FAFC);
+  color: var(--foreground, #0F172A);
+}
+
+.btn-submit {
+  padding: 11px 26px;
+  background: var(--primary, #1D4ED8);
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #1A44B8;
+  transform: translateY(-1px);
+}
+
+.btn-submit:disabled,
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   4. 로딩 UI
+   ========================================================================== */
+
+.board-edit-loading {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--muted-foreground, #64748B);
+}
+
+.board-edit-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--primary, #1D4ED8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
