@@ -60,12 +60,13 @@ export default function SearchPanel({
   // TMAP ID 우선 추출
   const getPoiKey = (poi) => poi?.id || poi?.poiId;
 
-  // 핀 선택됐을때 컨테이너 찾아 스크롤
+  // 핀 선택됐을때 컨테이너 찾아 스크롤 (브라우저 window 스크롤 방지: block: 'nearest')
   useEffect(() => {
     if (selectedPoiId && itemRefs.current[selectedPoiId]) {
       itemRefs.current[selectedPoiId].scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }, [selectedPoiId]);
@@ -192,12 +193,12 @@ export default function SearchPanel({
             const reviewCount = dummyReviews.length;
 
             return (
-                <div
-                  key={`${poiKey}_${index}`}
-                  ref={(el) => {
-                    if (el) itemRefs.current[poiKey] = el;
-                    else delete itemRefs.current[poiKey];
-                  }}
+              <div
+                key={`${poiKey}_${index}`}
+                ref={(el) => {
+                  if (el) itemRefs.current[poiKey] = el;
+                  else delete itemRefs.current[poiKey];
+                }}
                 className={`search-item ${isSelected ? 'active' : ''}`}
                 onClick={() => {
                   if (isSelected) {

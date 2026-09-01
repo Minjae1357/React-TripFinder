@@ -285,3 +285,55 @@
     transform: rotate(360deg);
   }
 }
+
+/* ==========================================================================
+   연계 여행 서비스 액션 버튼 영역
+   ========================================================================== */
+
+.booking-next-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border, #E2E8F0);
+}
+
+.btn-next-action {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+/* 숙소까지 경로 찾기 */
+.btn-find-route {
+  background: var(--secondary, #EFF6FF);
+  border: 1.5px solid #BFDBFE;
+  color: var(--primary, #1D4ED8);
+}
+
+.btn-find-route:hover {
+  background: #DBEAFE;
+  transform: translateY(-1px);
+}
+
+/* 이어서 계획 짜기 */
+.btn-plan-trip {
+  background: var(--primary, #1D4ED8);
+  border: none;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+}
+
+.btn-plan-trip:hover {
+  background: #1A44B8;
+  transform: translateY(-1px);
+}

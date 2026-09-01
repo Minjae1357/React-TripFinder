@@ -20,12 +20,13 @@ import BookingListPage from '@/features/accommodation/pages/BookingListPage';
 import BookingDetailPage from '@/features/accommodation/pages/BookingDetailPage';
 import AccommodationRecommendPage from '@/features/accommodation/pages/AccommodationRecommendPage';
 import BoardEditPage from '@/features/community/pages/BoardEditPage';
+import ScrollToTop from '../components/ScrollToTop';
 
 const AppRouter = () => {
     const hideFooter = location.pathname === '/place';
     return (
-        
        <BrowserRouter>
+       <ScrollToTop />
        <Header/>
         <Routes>
             <Route path="/signup" element={<SignupPage/>}/>

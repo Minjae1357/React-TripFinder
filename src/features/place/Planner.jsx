@@ -70,7 +70,25 @@ export default function Planner() {
   const [spotList, setSpotList] = useState([]);
   const [isLoadingPoi, setIsLoadingPoi] = useState(false);
 
-  const [duration, setDuration] = useState('');
+  // 숙소 예약 날짜 기반 자동 duration 산출
+  const [duration, setDuration] = useState(() => {
+    const checkIn = routePayload?.lodging?.checkInDate || routePayload?.startDate;
+    const checkOut = routePayload?.lodging?.checkOutDate || routePayload?.endDate;
+
+    if (checkIn && checkOut) {
+      const start = new Date(checkIn);
+      const end = new Date(checkOut);
+      const diffTime = end.getTime() - start.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays <= 0) return '당일치기';
+      if (diffDays === 1) return '1박 2일';
+      if (diffDays === 2) return '2박 3일';
+      if (diffDays >= 3) return '3박 이상';
+    }
+    return '';
+  });
+
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [isFoodCustom, setIsFoodCustom] = useState(false);
   const [customFood, setCustomFood] = useState('');
@@ -261,16 +279,6 @@ export default function Planner() {
     }
   };
 
-  const handleNavigateToBooking = () => {
-    const targetLodging = routePayload?.lodging || {
-      ...DEFAULT_LODGING_INFO,
-      name: `${routePayload?.destination?.name || '목적지'} 인근 베스트 숙소`,
-    };
-
-    console.log('숙소 예약 창으로 넘길 데이터:', targetLodging);
-    navigate('/booking', { state: { lodging: targetLodging, routePayload } });
-  };
-
   if (!routePayload) {
     return (
       <div className="planner-empty-box">
@@ -280,7 +288,7 @@ export default function Planner() {
     );
   }
 
-// =========================================================================
+  // =========================================================================
   // VIEW 2: 완성된 여행 일정 결과 페이지 뷰 (좌우 2분할)
   // =========================================================================
   if (viewMode === 'result' && generatedPlan) {
@@ -312,9 +320,9 @@ export default function Planner() {
           <span className="planner-badge-complete">생성 완료</span>
         </div>
 
-        {/* 🔥 좌우 2분할 래퍼 */}
+        {/* 좌우 2분할 래퍼 */}
         <div className="planner-split-layout">
-          {/* [1] 좌측 패널: 요약 정보 & 경비 분석 & 숙소 예약 */}
+          {/* [1] 좌측 패널: 요약 정보 & 경비 분석 */}
           <aside className="planner-left-summary">
             <h2 className="planner-main-title">{generatedPlan.tripTitle}</h2>
             <p className="planner-summary-desc">{generatedPlan.summary}</p>
@@ -355,12 +363,6 @@ export default function Planner() {
                 </div>
               )}
             </div>
-
-            {nights > 0 && (
-              <button onClick={handleNavigateToBooking} className="btn-booking-submit">
-                🏨 숙소 예약하러 가기
-              </button>
-            )}
           </aside>
 
           {/* [2] 우측 패널: 일자별 타임라인 리스트 */}

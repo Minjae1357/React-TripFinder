@@ -30,10 +30,27 @@ const BookingDetailPage = () => {
     if (!window.confirm('예약을 취소하겠습니까?')) return;
     try {
       await cancelBooking(bookingId);
-      loadBooking(); // 취소 후 상태 다시 불러오기
+      loadBooking();
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  // 숙소 주위 둘러보기 (/place 이동)
+  const handleExploreAround = () => {
+    const accommodationName =
+      booking?.items?.[0]?.accommodationName ||
+      booking?.accommodationName ||
+      '';
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    if (!accommodationName) {
+      navigate('/place?mode=search');
+      return;
+    }
+
+    navigate(`/place?mode=search&q=${encodeURIComponent(accommodationName)}`);
   };
 
   if (loading) {
@@ -142,6 +159,17 @@ const BookingDetailPage = () => {
                 예약 취소
               </button>
             )}
+          </div>
+
+          {/* 숙소 주위 둘러보기 버튼 단독 배치 */}
+          <div className="booking-next-actions">
+            <button
+              type="button"
+              className="btn-next-action btn-find-route"
+              onClick={handleExploreAround}
+            >
+              숙소 주위 둘러보고 계획 짜러가기
+            </button>
           </div>
         </div>
       </div>
