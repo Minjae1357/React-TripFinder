@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HOME_CONFIG } from '../constants/homeConfig';
 import './HomePage.css';
 
@@ -7,13 +7,11 @@ export default function HomePage() {
   const navigate = useNavigate();
   const { hero, featuresSection, placesSection, communitySection, ctaBanner } = HOME_CONFIG;
 
-  // 배경 이미지 롤링 인덱스 상태
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (!hero.bgImages || hero.bgImages.length <= 1) return;
 
-    // 5초(5000ms) 주기로 다음 이미지로 변경
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % hero.bgImages.length);
     }, 5000);
@@ -22,22 +20,8 @@ export default function HomePage() {
   }, [hero.bgImages]);
 
   return (
-    
     <div className="home-page">
-            테스트용 네비 ▼
-        <nav>
-            <Link to="/signup">회원가입</Link>
-            <Link to="/login">로그인</Link>   
-            <Link to="/board">커뮤니티</Link>
-            <Link to="/accommodation/1"> 숙소 상세 페이지 </Link>
-            <Link to="/accommodation/1/review/new"> 숙소 리뷰 작성 페이지 </Link>
-            <Link to="/accommodation/1/review/1/edit"> 숙소 리뷰 수정 페이지 </Link>
-            <Link to="/cart"> 장바구니 </Link>
-            <Link to="/bookings"> 내 예약 목록 </Link>
-            <Link to="/recommend"> 숙소 추천 </Link>
-        </nav>
-
-      {/* 1. Hero 섹션 (이미지 슬라이드 트랜지션) */}
+      {/* 1. Hero 섹션 */}
       <section className="hero">
         <div className="hero-bg-slider">
           {hero.bgImages.map((imgUrl, index) => (
@@ -70,7 +54,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. 핵심 기능 섹션 */}
+      {/* 2. 핵심 기능 섹션 (이미지 아이콘 적용) */}
       <section className="features-section">
         <div className="section-wrap">
           <div className="section-label">{featuresSection.label}</div>
@@ -78,7 +62,9 @@ export default function HomePage() {
           <div className="features-grid">
             {featuresSection.items.map((f) => (
               <div key={f.title} className="feature-card" onClick={() => navigate(f.link)}>
-                <span className="feature-icon">{f.icon}</span>
+                <div className="feature-icon-wrap">
+                  <img src={f.icon} alt={f.title} className="feature-icon-img" />
+                </div>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
                 <span className="feature-arrow">→</span>
@@ -109,7 +95,7 @@ export default function HomePage() {
                 </div>
                 <div className="place-info">
                   <h4>{place.name}</h4>
-                  <p>📍 {place.city}</p>
+                  <p>{place.city}</p>
                 </div>
               </div>
             ))}
