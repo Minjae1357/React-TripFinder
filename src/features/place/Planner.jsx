@@ -11,7 +11,7 @@ const DEFAULT_LODGING_INFO = {
   id: 'default_hotel',
   name: '목적지 추천 베스트 호텔',
   address: '목적지 중심가 인근',
-  pricePerNight: 150000,
+  pricePerNight: 0,
 };
 
 function calculateTransportCost(routePayload) {
@@ -356,12 +356,12 @@ export default function Planner() {
                 <span>• 현지 식사/활동비 ({duration}):</span>
                 <strong>{localCost.toLocaleString()}원</strong>
               </div>
-              {nights > 0 && (
+              {/* {nights > 0 && (
                 <div className="cost-row">
                   <span>• 숙소비 ({lodgingInfo.name} / {nights}박):</span>
                   <strong>{totalLodgingCost.toLocaleString()}원</strong>
                 </div>
-              )}
+              )} */}
             </div>
           </aside>
 
@@ -522,7 +522,7 @@ export default function Planner() {
         <section className="planner-step-section no-border">
           <h4 className="step-title">4. 추가로 넣고 싶은 일정이 있다면 적어주세요. (선택)</h4>
           <textarea
-            placeholder="예: 오후 3시쯤 카페에서 쉴 수 있는 시간을 꼭 넣어줘."
+            placeholder="예시) 오후 3시쯤 카페에서 쉴 수 있는 시간을 꼭 넣어줘."
             value={extraRequirement}
             onChange={(e) => setExtraRequirement(e.target.value)}
             rows={3}
@@ -531,12 +531,12 @@ export default function Planner() {
 
           <div className="detail-preview-bar">
             <div className="preview-text">
-              <span>⏰ {startTime} ~ {endTime}</span>
+              <span>시간 : {startTime} ~ {endTime} </span>
               <span className="divider">|</span>
-              <span>☕ {cafePreference}</span>
+              <span>카페 선호도 : {cafePreference}</span>
             </div>
             <button onClick={() => setIsModalOpen(true)} className="btn-open-modal">
-              ⚙️ 추가 설정
+              추가 설정
             </button>
           </div>
 
@@ -554,11 +554,11 @@ export default function Planner() {
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3 className="modal-title">⚙️ 추가 상세 설정</h3>
+            <h3 className="modal-title">추가 상세 설정</h3>
 
             <div className="modal-time-grid">
               <div>
-                <label className="modal-label">⏰ 출발 시간</label>
+                <label className="modal-label">출발 시간</label>
                 <input
                   type="time"
                   value={startTime}
@@ -567,7 +567,7 @@ export default function Planner() {
                 />
               </div>
               <div>
-                <label className="modal-label">🏁 귀가/도착 시간</label>
+                <label className="modal-label">귀가/도착 시간</label>
                 <input
                   type="time"
                   value={endTime}
@@ -578,7 +578,7 @@ export default function Planner() {
             </div>
 
             <div className="modal-pref-box">
-              <label className="modal-label">☕ 카페 방문 선호도</label>
+              <label className="modal-label">카페 방문 선호도</label>
               <div className="modal-pref-list">
                 {CAFE_PREFERENCES.map((pref) => (
                   <button
